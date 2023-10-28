@@ -1,7 +1,9 @@
 import React,{ useState } from "react"
 import { Link } from "react-router-dom"
+import Loader from "../../components/Loading"
 
 export default function SignUp() {
+    const [isLoading, setIsLoading] = useState(false)
     const [userInfo, setUserInfo] = useState({
         name: "",
         username: "",
@@ -40,7 +42,11 @@ export default function SignUp() {
                 <label htmlFor="password" className="font-bold mt-4 mb-1">Password</label>
                 <input type="password" id="password" className="focus:outline-none p-1.5 w-full bg-[#201f23] rounded-md " onChange={(e)=>setUserInfo({...userInfo,[e.target.id]:e.target.value})}/>
 
-                <button type="submit" className="bg-[#673be7] text-white rounded-md p-2 mt-4 font-bold text-sm hover:bg-violet-800 hover:text-zinc-300">Sign up</button>
+                <button type="submit" className="bg-[#673be7] text-white rounded-md p-2 mt-4 font-bold text-sm hover:bg-violet-800 hover:text-zinc-300">
+                    {
+                        isLoading ? <Loader/> : "Sign up"
+                    }
+                </button>
             </form>
 
             <div className="flex justify-center mt-6">
